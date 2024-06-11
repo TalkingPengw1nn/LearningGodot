@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ulcdoy7ootbn"]
+
+[ext_resource type="Texture2D" uid="uid://f6ecie34p1u5" path="res://assests/sprites/grid3x3.png" id="1_jqsvw"]
+
+[node name="Grid" type="Sprite2D"]
+modulate = Color(100, 31.892, 100, 1)
+texture = ExtResource("1_jqsvw")

@@ -1,0 +1,14 @@
+[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://dvudrsuc3p3ml"]
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_jvw85"]
+resource_name = "Reverb"
+
+[resource]
+bus/1/name = &"MarkSFX"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 4.03797
+bus/1/send = &""
+bus/1/effect/0/effect = SubResource("AudioEffectReverb_jvw85")
+bus/1/effect/0/enabled = false

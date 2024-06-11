@@ -1,0 +1,151 @@
+[gd_scene load_steps=9 format=3 uid="uid://ctybyrry6lifm"]
+
+[ext_resource type="Script" path="res://scripts/pause_screen.gd" id="1_5ilqb"]
+[ext_resource type="FontFile" uid="uid://da6it42mgpy7e" path="res://assests/fonts/PixelOperator8-Bold.ttf" id="1_121yc"]
+[ext_resource type="AudioStream" uid="uid://d11lwjvq2r7r8" path="res://assests/sounds/cabled_mess__blip_c_06.wav" id="3_1yle4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gbg4g"]
+bg_color = Color(0.482353, 0.843137, 0.47451, 0.717647)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.103879, 0.308164, 0.140615, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b17uk"]
+bg_color = Color(0.401559, 0.595397, 0.937713, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.246028, 0.38724, 0.821265, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 5
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nsqot"]
+bg_color = Color(0.4, 0.6, 0.396078, 0.576471)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.596078, 0.937255, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_udngi"]
+bg_color = Color(0.4, 0.596078, 0.937255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.246028, 0.38724, 0.821265, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 5
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifek4"]
+bg_color = Color(0.431373, 0.690196, 0.423529, 0.560784)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.596078, 0.937255, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="PauseScreen" type="CanvasLayer"]
+script = ExtResource("1_5ilqb")
+
+[node name="PausePanel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -428.0
+offset_top = -277.0
+offset_right = 428.0
+offset_bottom = 277.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gbg4g")
+
+[node name="PauseLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -253.5
+offset_top = -134.0
+offset_right = 253.5
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_121yc")
+theme_override_font_sizes/font_size = 50
+text = "Player Wins"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButtonMenu" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.499
+anchor_top = 0.584
+anchor_right = 0.5
+anchor_bottom = 0.585
+offset_left = -119.1
+offset_top = -64.4
+offset_right = 119.0
+offset_bottom = -6.10352e-05
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_121yc")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_b17uk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_b17uk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nsqot")
+text = "Play Again"
+
+[node name="RestartSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_1yle4")
+
+[node name="RedoButtonMenu" type="Button" parent="."]
+visible = false
+anchors_preset = -1
+anchor_left = 0.501
+anchor_top = 0.584
+anchor_right = 0.501
+anchor_bottom = 0.584
+offset_left = -119.9
+offset_top = 27.6
+offset_right = 119.1
+offset_bottom = 92.6
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_121yc")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_udngi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_udngi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ifek4")
+text = "Redo Mode"
+
+[connection signal="button_down" from="RestartButtonMenu" to="." method="_on_restart_button_button_down"]
+[connection signal="button_up" from="RestartButtonMenu" to="." method="_on_restart_button_button_up"]
+[connection signal="button_down" from="RedoButtonMenu" to="." method="_on_redo_button_button_down"]
+[connection signal="button_up" from="RedoButtonMenu" to="." method="_on_redo_button_button_up"]

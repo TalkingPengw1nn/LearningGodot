@@ -1,0 +1,160 @@
+[gd_scene load_steps=16 format=3 uid="uid://cn4katqktnw6u"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_62ho4"]
+[ext_resource type="PackedScene" uid="uid://ulcdoy7ootbn" path="res://scenes/grid.tscn" id="1_a8y43"]
+[ext_resource type="PackedScene" uid="uid://w7bs7hue1hsn" path="res://scenes/circle.tscn" id="2_kfeti"]
+[ext_resource type="PackedScene" uid="uid://c2whc6ljdqwxr" path="res://scenes/cross.tscn" id="3_2bxm5"]
+[ext_resource type="FontFile" uid="uid://da6it42mgpy7e" path="res://assests/fonts/PixelOperator8-Bold.ttf" id="5_5msos"]
+[ext_resource type="PackedScene" uid="uid://ctybyrry6lifm" path="res://scenes/pause_screen.tscn" id="6_o4cre"]
+[ext_resource type="AudioStream" uid="uid://bx0kgamw7088t" path="res://assests/sounds/scribble_circle.wav" id="7_hl4hf"]
+[ext_resource type="AudioStream" uid="uid://1ryrobsvuh84" path="res://assests/sounds/scribble_cross.wav" id="8_pkdop"]
+[ext_resource type="AudioStream" uid="uid://davgogpcqpq0h" path="res://assests/sounds/tie_sound.wav" id="9_xgkpv"]
+[ext_resource type="AudioStream" uid="uid://d11lwjvq2r7r8" path="res://assests/sounds/cabled_mess__blip_c_06.wav" id="10_kcmwb"]
+[ext_resource type="AudioStream" uid="uid://dc7ptec2bhl33" path="res://assests/sounds/win_sound.wav" id="10_scm6v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v77tt"]
+bg_color = Color(0.377944, 0.712772, 0.989596, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 0.556863, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bdkjt"]
+bg_color = Color(1, 1, 0.556863, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.09, 0.256833, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.18359, 0.18359, 0.18359, 1)
+shadow_size = 5
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_10iis"]
+bg_color = Color(0.0901961, 0.254902, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 0.556863, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 5
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djq0b"]
+bg_color = Color(0.376471, 0.713726, 0.988235, 0.556863)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0901961, 0.254902, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Main" type="Node"]
+script = ExtResource("1_62ho4")
+circle_scene = ExtResource("2_kfeti")
+cross_scene = ExtResource("3_2bxm5")
+
+[node name="Grid" parent="." instance=ExtResource("1_a8y43")]
+position = Vector2(300, 300)
+
+[node name="PauseScreen" parent="." instance=ExtResource("6_o4cre")]
+process_mode = 2
+visible = false
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="MarkSoundCircle" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("7_hl4hf")
+bus = &"MarkSFX"
+
+[node name="MarkSoundCross" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("8_pkdop")
+bus = &"MarkSFX"
+
+[node name="TieSound" type="AudioStreamPlayer2D" parent="Sounds"]
+process_mode = 2
+stream = ExtResource("9_xgkpv")
+bus = &"MarkSFX"
+
+[node name="WinSound" type="AudioStreamPlayer2D" parent="Sounds"]
+process_mode = 2
+stream = ExtResource("10_scm6v")
+bus = &"MarkSFX"
+
+[node name="RestartSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("10_kcmwb")
+
+[node name="SidePanel" type="Node" parent="."]
+
+[node name="SidePanel" type="Panel" parent="SidePanel"]
+custom_minimum_size = Vector2(300, 600)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_v77tt")
+
+[node name="TurnLabel" type="Label" parent="SidePanel"]
+offset_left = 610.0
+offset_top = 10.0
+offset_right = 890.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 15
+theme_override_constants/shadow_offset_y = 15
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/line_spacing = 15
+theme_override_fonts/font = ExtResource("5_5msos")
+theme_override_font_sizes/font_size = 25
+text = "Player Turn"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TurnDisplay" type="Panel" parent="SidePanel"]
+offset_left = 665.0
+offset_top = 100.0
+offset_right = 840.0
+offset_bottom = 275.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bdkjt")
+
+[node name="RestartButtonMain" type="Button" parent="SidePanel"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.584
+anchor_right = 0.5
+anchor_bottom = 0.584
+offset_left = 180.0
+offset_top = 109.6
+offset_right = 419.0
+offset_bottom = 174.6
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_5msos")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_10iis")
+theme_override_styles/hover = SubResource("StyleBoxFlat_10iis")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_djq0b")
+text = "Restart
+"
+
+[connection signal="restart" from="PauseScreen" to="." method="_on_pause_screen_restart"]
+[connection signal="button_down" from="SidePanel/RestartButtonMain" to="." method="_on_restart_button_main_button_down"]
+[connection signal="button_up" from="SidePanel/RestartButtonMain" to="." method="_on_restart_button_main_button_up"]
